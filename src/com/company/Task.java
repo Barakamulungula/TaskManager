@@ -1,20 +1,25 @@
 package com.company;
 
+import java.util.Date;
+
 public class Task {
 
     private String title;
     private String description;
     private Boolean completed;
-    private String date;
-    private String dateCompleted;
+    private Date dateCreated;
+    private Date dueDate;
 
 
-    public Task(String title, String description, String date) {
+    public Task(String title, String description, Date dueDate, Date dateCreated) {
         this.title = title;
         this.description = description;
-        this.date = date;
+        this.dueDate = dueDate;
+        this.dateCreated = dateCreated;
+        this.completed = false;
 
     }
+
 
     public Task() {
     }
@@ -43,19 +48,21 @@ public class Task {
         this.completed = completed;
     }
 
-    public String getDate() {
-        return date;
+    public Date getDateCreated() {
+        return dateCreated;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
-    public String getDateCompleted() {
-        return dateCompleted;
+    public Date getDueDate() {
+        return dueDate;
     }
 
-    public void setDateCompleted(String dateCompleted) {
-        this.dateCompleted = dateCompleted;
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
+
+
 }
