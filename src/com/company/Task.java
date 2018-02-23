@@ -1,27 +1,22 @@
 package com.company;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Task {
-
     private String title;
     private String description;
-    private Boolean completed;
     private Date dateCreated;
     private Date dueDate;
+    private boolean isCompleted;
 
-
-    public Task(String title, String description, Date dueDate, Date dateCreated) {
+    public Task(String title, String description, Date dueDate) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
-        this.dateCreated = dateCreated;
-        this.completed = false;
-
-    }
-
-
-    public Task() {
+        this.isCompleted = false;
+        setDateCreated();
+        this.dateCreated = getDateCreated();
     }
 
     public String getTitle() {
@@ -40,20 +35,13 @@ public class Task {
         this.description = description;
     }
 
-    public Boolean getCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(Boolean completed) {
-        this.completed = completed;
-    }
-
     public Date getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setDateCreated() {
+        Calendar calendar = Calendar.getInstance();
+        this.dateCreated = calendar.getTime();
     }
 
     public Date getDueDate() {
@@ -64,5 +52,11 @@ public class Task {
         this.dueDate = dueDate;
     }
 
+    public boolean isCompleted() {
+        return isCompleted;
+    }
 
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
+    }
 }
