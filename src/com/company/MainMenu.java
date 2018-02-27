@@ -54,8 +54,11 @@ public class MainMenu {
                     break;
                 case 9:
                     System.out.println(RED_BOLD+"You have left the program"+RESET);
+                    System.exit(0);
                     break;
                 default:
+                    System.out.println(RED_BOLD+" Enter number from 1 to 9"+RESET);
+                    startMenu();
                     break;
             }
         }else {

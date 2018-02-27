@@ -37,9 +37,9 @@ public class EditMenu{
     public void setTitle() {
         System.out.println(PURPLE_BOLD+"Enter a new title for you task"+RESET);
         if(input.hasNextLine()){
-            String t = input.nextLine();
-            if(t.length() > 0){
-                this.title = t;
+            String title = input.nextLine();
+            if(title.length() > 0){
+                this.title = title.trim();
                 getTask().setTitle(getTitle());
                 System.out.println(GREEN_BOLD+"You renamed to "+getTitle()+RESET);
             }else{
@@ -59,9 +59,9 @@ public class EditMenu{
     public void setDescription() {
         System.out.println(PURPLE_BOLD+"Enter a new description for you task"+RESET);
         if(input.hasNextLine()){
-            String desc = input.nextLine();
-            if(desc.length() > 0){
-                this.description = desc;
+            String description = input.nextLine();
+            if(description.length() > 0){
+                this.description = description.trim();
                 getTask().setDescription(getDescription());
                 System.out.println(GREEN_BOLD+"description changed to "+getDescription()+RESET);
             }else{
@@ -82,10 +82,10 @@ public class EditMenu{
         System.out.println(PURPLE_BOLD+"Enter a new due date for you task"+RESET);
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
         if(input.hasNextLine()){
-            String d = input.nextLine();
-            if(d.length() > 0){
+            String dueDate = input.nextLine();
+            if(dueDate.length() > 0){
                 try{
-                    this.dueDate = dateFormat.parse(d);
+                    this.dueDate = dateFormat.parse(dueDate);
                     task.setDueDate(getDueDate());
                     System.out.println(GREEN_BOLD+"due date changed to "+dateFormat.format(getDueDate())+RESET);
 

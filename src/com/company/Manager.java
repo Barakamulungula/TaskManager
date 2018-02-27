@@ -68,10 +68,10 @@ public class Manager {
         System.out.println(PURPLE_BOLD+"Name your task:"+RESET);
         /** return true if there is another line of input*/
         if(input.hasNextLine()){
-            String t = input.nextLine();
+            String title = input.nextLine();
             /** Checks if the user entered any input*/
-            if(t.length() > 0){
-                title = t;
+            if(title.length() > 0){
+                this.title = title.trim();
             }else {
                 System.out.println(RED_BOLD+"Enter input"+RESET);
                 setTitle();
@@ -83,9 +83,9 @@ public class Manager {
     protected void setDescription(){
         System.out.println(PURPLE_BOLD+"Give your task a description:");
         if(input.hasNextLine()){
-            String d = input.nextLine();
-            if(d.length() > 0){
-                description = d;
+            String description = input.nextLine();
+            if(description.length() > 0){
+                this.description = description.trim();
             }else {
                 System.out.println(RED_BOLD+"Enter input");
                 setDescription();
@@ -99,10 +99,10 @@ public class Manager {
         System.out.println(PURPLE_BOLD+"What date do you need the task done use (MM/DD/YY) e.g '02/19/18' format:"+RESET);
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
         if(input.hasNextLine()){
-            String d = input.nextLine();
-            if(d.length() > 0){
+            String dueDate = input.nextLine();
+            if(dueDate.length() > 0){
                 try{
-                    date1 = dateFormat.parse(d);
+                    date1 = dateFormat.parse(dueDate);
 
                 }catch (ParseException pe){
                     System.out.println(RED_BOLD+"Enter date in MM/DD/YY format"+RESET);
@@ -125,10 +125,10 @@ public class Manager {
         if(!taskList.isEmpty()){
             System.out.println(PURPLE_BOLD+"Choose a task to remove"+RESET);
             if(input.hasNextInt()){
-                int num = input.nextInt();
-                if(num > 0 &&  num <= taskList.size()){
-                    System.out.println(GREEN_BOLD+"You have removed "+taskList.get(num-1).getTitle()+RESET);
-                    taskList.remove(num-1);
+                int index = input.nextInt();
+                if(index > 0 &&  index <= taskList.size()){
+                    System.out.println(GREEN_BOLD+"You have removed "+taskList.get(index-1).getTitle()+RESET);
+                    taskList.remove(index-1);
                     input.nextLine();
                     mainMenu.startMenu();
 
@@ -183,12 +183,12 @@ public class Manager {
     protected void editTask(){
         viewTask();
         if(!taskList.isEmpty()){
-            int n;
+            int index;
             System.out.println(PURPLE_BOLD+"What task would you like to edit"+RESET);
             if(input.hasNextInt()){
-                n = input.nextInt();
-                if(n > 0 && n <= taskList.size()){
-                    editMenu = new EditMenu(taskList.get(n-1),mainMenu);
+                index = input.nextInt();
+                if(index > 0 && index <= taskList.size()){
+                    editMenu = new EditMenu(taskList.get(index-1),mainMenu);
                     input.nextLine();
                     editMenu.startEditMenu();
                 }
@@ -239,38 +239,38 @@ public class Manager {
     /** Prints out all all objects in tasklist array if variable completed is marked true*/
     protected void viewCompletedTask(){
         if(!taskList.isEmpty()){
-            int num = 1;
-            for(Task t: taskList){
-                if(t.isCompleted()){
+            int index = 1;
+            for(Task task: taskList){
+                if(task.isCompleted()){
                     System.out.println(CYAN_BOLD+CYAN_UNDERLINED+"Here is a list of your completed task"+RESET);
-                    System.out.println(GREEN_BOLD + num + ". " + t.getTitle() + RESET+
-                            CYAN_BOLD+"\tDue Date: "+dateFormat.format(t.getDueDate())+RESET+
+                    System.out.println(GREEN_BOLD + index + ". " + task.getTitle() + RESET+
+                            CYAN_BOLD+"\tDue Date: "+dateFormat.format(task.getDueDate())+RESET+
                             GREEN_BOLD+"\t|completed"+ RESET);
-                    num++;
+                    index++;
                 }
-                if(num == 1){
+                if(index == 1){
                     System.out.println(RED_BOLD+"You have no completed tasks"+RESET);
                 }
                 mainMenu.startMenu();
             }
         }else {
-            System.out.println(RED_BOLD+"You no tasks in your task list"+RESET);
+            System.out.println(RED_BOLD+"You have no tasks in your task list"+RESET);
             mainMenu.startMenu();
         }
     }
 
     protected void viewUncompletedTask(){
         if(!taskList.isEmpty()){
-            int num = 1;
-            for(Task t: taskList){
-                if(!t.isCompleted()){
+            int index = 1;
+            for(Task task: taskList){
+                if(!task.isCompleted()){
                     System.out.println(CYAN_BOLD+CYAN_UNDERLINED+"Here is a list of things you need to do"+RESET);
-                    System.out.println(GREEN_BOLD + num + ". " + t.getTitle() + RESET+
-                            CYAN_BOLD+"\tDue Date: "+dateFormat.format(t.getDueDate())+RESET+
+                    System.out.println(GREEN_BOLD + index + ". " + task.getTitle() + RESET+
+                            CYAN_BOLD+"\tDue Date: "+dateFormat.format(task.getDueDate())+RESET+
                             RED_BOLD+"\t|not completed"+ RESET);
-                    num++;
+                    index++;
                 }
-                if(num == 1){
+                if(index == 1){
                     System.out.println(GREEN_BOLD+"Wazoo! you have everything done."+RESET);
                 }
                 mainMenu.startMenu();
