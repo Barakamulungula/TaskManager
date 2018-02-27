@@ -43,7 +43,7 @@ public class EditMenu{
                 getTask().setTitle(getTitle());
                 System.out.println(GREEN_BOLD+"You renamed to "+getTitle()+RESET);
             }else{
-                System.out.println("Enter input");
+                System.out.println(RED_BOLD+"Enter input"+RESET);
                 setTitle();
             }
         }else{
@@ -131,7 +131,7 @@ public class EditMenu{
                             mainMenu.startMenu();
                             break;
                         default:
-                            System.out.println("Enter number from 1 to 4");
+                            System.out.println(RED_BOLD+"Enter number from 1 to 4"+RESET);
                             startEditMenu();
                             break;
                     }

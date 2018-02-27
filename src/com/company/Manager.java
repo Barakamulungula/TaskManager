@@ -63,8 +63,9 @@ public class Manager {
     }
 
 
+    /** sets the title variable in the task object*/
     protected void setTitle() {
-        System.out.println(PURPLE_BOLD+"Name your task:");
+        System.out.println(PURPLE_BOLD+"Name your task:"+RESET);
         /** return true if there is another line of input*/
         if(input.hasNextLine()){
             String t = input.nextLine();
@@ -72,7 +73,7 @@ public class Manager {
             if(t.length() > 0){
                 title = t;
             }else {
-                System.out.println(RED_BOLD+"Enter input");
+                System.out.println(RED_BOLD+"Enter input"+RESET);
                 setTitle();
             }
         }
@@ -93,6 +94,7 @@ public class Manager {
 
     }
 
+    /** sets due date for the task object*/
     public void setDueDate() {
         System.out.println(PURPLE_BOLD+"What date do you need the task done use (MM/DD/YY) e.g '02/19/18' format:"+RESET);
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
@@ -111,12 +113,13 @@ public class Manager {
                 setDueDate();
             }
         }else{
-            System.out.println("Enter valid date");
+            System.out.println(RED_BOLD+"Enter valid date"+RESET);
             setDueDate();
         }
     }
 
 
+    /** Remove a task object from the task list array*/
     protected void removeTask(){
         viewTask();
         if(!taskList.isEmpty()){
@@ -130,7 +133,7 @@ public class Manager {
                     mainMenu.startMenu();
 
                 }else {
-                    System.out.println("Enter a number that corresponds with the task");
+                    System.out.println(RED_BOLD+"Enter a number that corresponds with the task"+RESET);
                     input.nextLine();
                     removeTask();
                 }
@@ -159,7 +162,8 @@ public class Manager {
                         "Description: " + taskList.get(index).getDescription() + "\n" +
                         "Date Created: " + d1 + "\n" +
                         "Due Date: " + d2 + "\n" +
-                        "Completed: " + taskList.get(index).isCompleted() + RESET);
+                        "Completed: " + taskList.get(index).isCompleted() + "\n"+RESET);
+                    input.nextLine();
                     mainMenu.startMenu();
                 }else {
                     System.out.println(RED_UNDERLINED+RED_BOLD+"Enter the number for the task you wish to select"+RESET);
@@ -180,11 +184,12 @@ public class Manager {
         viewTask();
         if(!taskList.isEmpty()){
             int n;
-            System.out.println("What task would you like to edit");
+            System.out.println(PURPLE_BOLD+"What task would you like to edit"+RESET);
             if(input.hasNextInt()){
                 n = input.nextInt();
                 if(n > 0 && n <= taskList.size()){
                     editMenu = new EditMenu(taskList.get(n-1),mainMenu);
+                    input.nextLine();
                     editMenu.startEditMenu();
                 }
                 }else{
