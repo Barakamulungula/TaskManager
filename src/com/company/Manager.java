@@ -198,9 +198,7 @@ public class Manager {
                 editTask();
             }
             }else{
-                input.nextLine();
-                System.out.println(RED_UNDERLINED+RED_BOLD+"Enter a number"+RESET);
-                editTask();
+                mainMenu.startMenu();
             }
         }
 
