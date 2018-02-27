@@ -20,6 +20,11 @@ public class MainMenu {
                 "8. View Uncompleted task\n"+ RESET+
                 RED_BOLD+ "9. Exit Program"+RESET);
 
+
+        /** Recommendation, use a check for input.nextLine() and make it check for string numerical values, '1', '2', etc.
+         * this way you can handle on error handling within the default call (as everything's a string), and won't need to
+         * check for things like hasNextInt() or to use a try/catch */
+
         System.out.println(BLUE_BACKGROUND+BLACK_BOLD+"SELECT AN OPTION (1-9)                                  "+RESET);
         if(input.hasNextInt()){
             switch (input.nextInt()){

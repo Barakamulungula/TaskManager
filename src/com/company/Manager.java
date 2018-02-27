@@ -31,6 +31,8 @@ public class Manager {
         if(!taskList.isEmpty()){
             System.out.println(CYAN_BOLD+CYAN_UNDERLINED+"\n   Here is a list of all your tasks   "+RESET);
             /** the loop gets every task object in tasklist array*/
+
+            /** Better naming convention. Call Task an item, task, something that is readable, as 't' doesn't really convey anything. */
             for(Task t: taskList){
                 /** Checks if the current task is completed */
                 if(!t.isCompleted()) {
@@ -65,9 +67,17 @@ public class Manager {
 
     /** sets the title variable in the task object*/
     protected void setTitle() {
+        /** Rather than setting member variables equal to user responses, a better approach would be to have setTitle() return a String,
+         * to have setDescription return a String, and to have setDate() return a date, then you could be all:
+         * Task task = new Task(setTitle(), setDescription(), setDueDate()); for more readability. that way you're telling the user
+         * that these methods are going to build your object. */
+
+
         System.out.println(PURPLE_BOLD+"Name your task:"+RESET);
         /** return true if there is another line of input*/
         if(input.hasNextLine()){
+
+            /** Better naming convention. String response, for example*/
             String t = input.nextLine();
             /** Checks if the user entered any input*/
             if(t.length() > 0){
@@ -264,8 +274,15 @@ public class Manager {
     protected void viewUncompletedTask(){
         if(!taskList.isEmpty()){
             int num = 1;
+
+            /** Needs better naming convention. Task task, Task item, etc. */
             for(Task t: taskList){
                 if(!t.isCompleted()){
+
+                    /** One cleaner way to make your code more readable would be to have a method in Colors, a public static method,
+                     * that takes in a String (for the message), and the color they wish to color it. then builds the colored string accordingly
+                     * with a case-switch */
+
                     System.out.println(CYAN_BOLD+CYAN_UNDERLINED+"Here is a list of things you need to do"+RESET);
                     System.out.println(GREEN_BOLD + num + ". " + t.getTitle() + RESET+
                             CYAN_BOLD+"\tDue Date: "+dateFormat.format(t.getDueDate())+RESET+
