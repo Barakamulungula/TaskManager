@@ -24,6 +24,14 @@ public class Task {
 
     }
 
+    public Task(String title, String description, Date dateCreated, Date dueDate, boolean isCompleted) {
+        this.title = title;
+        this.description = description;
+        this.dateCreated = dateCreated;
+        this.dueDate = dueDate;
+        this.isCompleted = isCompleted;
+    }
+
     Calendar calendar = Calendar.getInstance();
 
     public String getTitle() {

@@ -7,6 +7,7 @@ import static com.company.utils.Colors.*;
 public class MainMenu {
     private Scanner input = new Scanner(System.in);
     Manager manager = new Manager(this);
+    SaveTaskList saveTaskList = new SaveTaskList(this,"/Users/barakamulungula/IdeaProjects/TaskManager/src/com/company/data.txt", Manager.taskList);
 
     protected void startMenu(){
         System.out.println(BLUE_BACKGROUND+BLACK_BOLD+"Welcome, to the task manager what would you like to do? "+RESET);
@@ -18,8 +19,9 @@ public class MainMenu {
                 "6. Mark a task completed\n" +
                 "7. View Completed task\n" +
                 "8. View Uncompleted task\n"+
-                "9. Save your task list\n"+RESET+
-                RED_BOLD+ "10. Exit Program"+RESET);
+                "9. Save your task list\n"+
+                "10. Retrieve saved tasks\n"+RESET+
+                RED_BOLD+ "11. Exit Program"+RESET);
 
         System.out.println(BLUE_BACKGROUND+BLACK_BOLD+"SELECT AN OPTION (1-9)                                  "+RESET);
         if(input.hasNextInt()){
@@ -54,10 +56,12 @@ public class MainMenu {
                     manager.viewUncompletedTask();
                     break;
                 case 9:
-                    SaveTaskList saveTaskList = new SaveTaskList(this,"/Users/barakamulungula/IdeaProjects/TaskManager/src/com/company/data.txt", Manager.taskList);
                     saveTaskList.saveTask();
                     break;
                 case 10:
+                    saveTaskList.saveToTaskList();
+                    break;
+                case 11:
                     System.out.println(RED_BOLD+"You have left the program"+RESET);
                     System.exit(0);
                     break;

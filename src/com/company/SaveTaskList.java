@@ -1,8 +1,8 @@
 package com.company;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static com.company.utils.Colors.GREEN_BOLD;
@@ -13,12 +13,14 @@ public class SaveTaskList {
     MainMenu mainMenu;
     private String fileName;
     private List<Task> list;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
 
 
     public SaveTaskList(MainMenu mainMenu, String fileName, List<Task> list) {
         this.mainMenu = mainMenu;
         this.fileName = fileName;
         this.list = list;
+        setList(this.list);
     }
 
     public String getFileName() {
@@ -45,7 +47,7 @@ public class SaveTaskList {
                 for (Task task:
                  list) {
                     fileWriter.write(task.getTitle()+", "+task.getDescription()+", "+
-                            task.getDateCreated()+", "+task.getDueDate()+", "+task.isCompleted()+"\n");
+                            dateFormat.format(task.getDateCreated())+", "+dateFormat.format(task.getDueDate())+", "+task.isCompleted()+"\n");
                     fileWriter.flush();
                     fileWriter.close();
                     System.out.println(GREEN_BOLD+"Your list has been saved"+RESET);
@@ -60,12 +62,33 @@ public class SaveTaskList {
     }
 
     protected void saveToTaskList(){
-        try{
-            File file = new File(getFileName());
+            try{
+                String delimiter = ",";
+                String newLine = "";
+                File file = new File(getFileName());
+                boolean isCompleted;
+                BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+                while ((newLine = bufferedReader.readLine()) != null){
+                    String data [] = newLine.split(delimiter);
+                    Date date1 = dateFormat.parse(data[2]);
+                    Date date2 = dateFormat.parse(data[3]);
+                    if(data[4].trim().toLowerCase().equals("true")){
+                        isCompleted = true;
+                    }else{
+                        isCompleted = false;
+                    }
+                    getList().clear();
+                    getList().add(new Task(data[0], data[1], date1, date2, isCompleted));
+                }
 
-        }catch (Exception e){
-            System.out.println("file not found");
-        }
+                System.out.println(GREEN_BOLD+"Your saved tasks have been retrieved"+RESET);
+                mainMenu.startMenu();
+
+
+            }catch (Exception e){
+                System.out.println("file not found");
+                mainMenu.startMenu();
+            }
     }
 
 
