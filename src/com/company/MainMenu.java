@@ -17,8 +17,9 @@ public class MainMenu {
                 "5. Edit a task\n" +
                 "6. Mark a task completed\n" +
                 "7. View Completed task\n" +
-                "8. View Uncompleted task\n"+ RESET+
-                RED_BOLD+ "9. Exit Program"+RESET);
+                "8. View Uncompleted task\n"+
+                "9. Save your task list\n"+RESET+
+                RED_BOLD+ "10. Exit Program"+RESET);
 
         System.out.println(BLUE_BACKGROUND+BLACK_BOLD+"SELECT AN OPTION (1-9)                                  "+RESET);
         if(input.hasNextInt()){
@@ -53,6 +54,10 @@ public class MainMenu {
                     manager.viewUncompletedTask();
                     break;
                 case 9:
+                    SaveTaskList saveTaskList = new SaveTaskList(this,"/Users/barakamulungula/IdeaProjects/TaskManager/src/com/company/data.txt", Manager.taskList);
+                    saveTaskList.saveTask();
+                    break;
+                case 10:
                     System.out.println(RED_BOLD+"You have left the program"+RESET);
                     System.exit(0);
                     break;

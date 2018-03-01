@@ -1,1 +1,1 @@
-soccer, play soccer, 03/01/18, 02/28/18, false
+soccer, play socce, Thu Mar 01 13:19:16 EST 2018, Wed Dec 12 00:00:00 EST 2012, false

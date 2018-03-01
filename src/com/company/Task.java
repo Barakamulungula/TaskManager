@@ -21,16 +21,7 @@ public class Task {
         this.isCompleted = false;
         setDateCreated();
         this.dateCreated = getDateCreated();
-        File file = new File("/Users/barakamulungula/IdeaProjects/TaskManager/src/com/company/data.txt");
-        try{
-            FileWriter fileWriter = new FileWriter(file,true);
-            fileWriter.write(getTitle()+", "+getDescription()+", "+dateFormat.format(getDueDate())+", "+
-                    dateFormat.format(getDateCreated())+", "+isCompleted()+"\n");
-            fileWriter.flush();
-            fileWriter.close();
-        }catch (Exception e){
-            System.out.println("file not found");
-        }
+
     }
 
     Calendar calendar = Calendar.getInstance();
