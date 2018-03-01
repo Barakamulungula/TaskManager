@@ -218,6 +218,7 @@ public class Manager {
                         //set the private completed boolean variable to true
                         taskList.get(index).setCompleted(true);
                         System.out.println(GREEN_BOLD + taskList.get(index).getTitle() + " has been marked completed");
+                        input.nextLine();
                         mainMenu.startMenu();
                     }
                 }else {

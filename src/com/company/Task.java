@@ -1,5 +1,8 @@
 package com.company;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -9,6 +12,7 @@ public class Task {
     private Date dateCreated;
     private Date dueDate;
     private boolean isCompleted;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
 
     public Task(String title, String description, Date dueDate) {
         this.title = title;
@@ -17,7 +21,19 @@ public class Task {
         this.isCompleted = false;
         setDateCreated();
         this.dateCreated = getDateCreated();
+        File file = new File("/Users/barakamulungula/IdeaProjects/TaskManager/src/com/company/data.txt");
+        try{
+            FileWriter fileWriter = new FileWriter(file,true);
+            fileWriter.write(getTitle()+", "+getDescription()+", "+dateFormat.format(getDueDate())+", "+
+                    dateFormat.format(getDateCreated())+", "+isCompleted()+"\n");
+            fileWriter.flush();
+            fileWriter.close();
+        }catch (Exception e){
+            System.out.println("file not found");
+        }
     }
+
+    Calendar calendar = Calendar.getInstance();
 
     public String getTitle() {
         return title;
@@ -40,7 +56,6 @@ public class Task {
     }
 
     public void setDateCreated() {
-        Calendar calendar = Calendar.getInstance();
         this.dateCreated = calendar.getTime();
     }
 
