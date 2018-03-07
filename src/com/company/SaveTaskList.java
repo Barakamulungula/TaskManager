@@ -43,7 +43,7 @@ public class SaveTaskList {
         if(!getList().isEmpty()){
             try{
                 File file = new File(getFileName());
-                FileWriter fileWriter = new FileWriter(file, true);
+                FileWriter fileWriter = new FileWriter(file, true );
                 for (Task task:
                  list) {
                     fileWriter.write(task.getTitle()+", "+task.getDescription()+", "+
@@ -58,6 +58,7 @@ public class SaveTaskList {
             }
         }else{
             System.out.println(RED_BOLD+"nothing to save"+RESET);
+            mainMenu.startMenu();
         }
     }
 
@@ -68,6 +69,7 @@ public class SaveTaskList {
                 File file = new File(getFileName());
                 boolean isCompleted;
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+                getList().clear();
                 while ((newLine = bufferedReader.readLine()) != null){
                     String data [] = newLine.split(delimiter);
                     Date date1 = dateFormat.parse(data[2]);
@@ -77,7 +79,6 @@ public class SaveTaskList {
                     }else{
                         isCompleted = false;
                     }
-                    getList().clear();
                     getList().add(new Task(data[0], data[1], date1, date2, isCompleted));
                 }
 
